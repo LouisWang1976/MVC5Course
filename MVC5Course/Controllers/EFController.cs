@@ -1,4 +1,5 @@
 ﻿using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -77,20 +78,36 @@ namespace MVC5Course.Controllers
         }
         public ActionResult Add5Percernt()
         {
-            var data = db.Product.Where(p => p.ProductName.Contains("White"));
-            foreach(var temp in data)
-            {
-                if(temp.Price.HasValue)
-                {
-                    temp.Price = temp.Price * 1.05m;
-                }
-            }
-            db.SaveChanges();
+            string ProductName = "%White%";
+            db.Database.ExecuteSqlCommand("update dbo.product set Price=Price*0.95 where ProductName like @p0", ProductName);
+            //var data = db.Product.Where(p => p.ProductName.Contains("White"));
+            //foreach(var temp in data)
+            //{
+            //    if(temp.Price.HasValue)
+            //    {
+            //        temp.Price = temp.Price * 1.05m;
+            //    }
+            //}
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult ClientContribution()
         {
             var data = db.vw_ClientContribution.Take(10);
+            return View(data);
+        }
+        public ActionResult ClientContributionView()
+        {
+            string FirstName = "%mary%";
+          var data=  db.Database.SqlQuery<ClientContributionView>(@"	SELECT
+         c.ClientId,
+         c.FirstName,
+         c.LastName,
+         (SELECT SUM(o.OrderTotal)
+          FROM[dbo].[Order] o
+          WHERE o.ClientId = c.ClientId) as OrderTotal
+    FROM
+        [dbo].[Client] as c where FirstName like @p0" , FirstName);
             return View(data);
         }
     }
