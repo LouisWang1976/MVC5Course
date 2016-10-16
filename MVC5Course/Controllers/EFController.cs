@@ -1,6 +1,7 @@
 ﻿using MVC5Course.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -40,6 +41,8 @@ namespace MVC5Course.Controllers
         public ActionResult Delete(Int32 id)
         {
             var l_product = db.Product.Find(id);
+            var orderline = l_product.OrderLine;
+            db.OrderLine.RemoveRange(orderline);
             db.Product.Remove(l_product);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -48,7 +51,22 @@ namespace MVC5Course.Controllers
         {
             var product = db.Product.Find(id);
             product.ProductName = product.ProductName + "!";
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eValidation in ex.EntityValidationErrors)
+                {
+                    foreach (var vErro in eValidation.ValidationErrors)
+                    {
+                        throw new Exception("驗證失敗:" + vErro.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
             return RedirectToAction("Index");
         }
         public ActionResult Add5Percernt()
