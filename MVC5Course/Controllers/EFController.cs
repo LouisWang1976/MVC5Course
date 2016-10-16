@@ -55,15 +55,21 @@ namespace MVC5Course.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbEntityValidationException ex)
+            catch (Exception ex)
             {
-                foreach (var eValidation in ex.EntityValidationErrors)
+                if(ex.GetType().ToString()== "System.Data.Entity.Validation.DbEntityValidationException")
                 {
-                    foreach (var vErro in eValidation.ValidationErrors)
+                    DbEntityValidationException vex = (DbEntityValidationException)ex;
+                    foreach (var eValidation in vex.EntityValidationErrors)
                     {
-                        throw new Exception("驗證失敗:" + vErro.ErrorMessage);
+                        foreach (var vErro in eValidation.ValidationErrors)
+                        {
+                            throw new Exception("驗證失敗:" + vErro.ErrorMessage);
+                        }
                     }
                 }
+                
+
 
                 throw;
             }
