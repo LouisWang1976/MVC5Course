@@ -96,9 +96,9 @@ namespace MVC5Course.Controllers
             var data = db.vw_ClientContribution.Take(10);
             return View(data);
         }
-        public ActionResult ClientContributionView()
+        public ActionResult ClientContributionView(string keyword= "%mary%")
         {
-            string FirstName = "%mary%";
+
           var data=  db.Database.SqlQuery<ClientContributionView>(@"	SELECT
          c.ClientId,
          c.FirstName,
@@ -107,7 +107,13 @@ namespace MVC5Course.Controllers
           FROM[dbo].[Order] o
           WHERE o.ClientId = c.ClientId) as OrderTotal
     FROM
-        [dbo].[Client] as c where FirstName like @p0" , FirstName);
+        [dbo].[Client] as c where FirstName like @p0" , keyword);
+            
+            return View(data);
+        }
+        public ActionResult ClientContributionViewByStoreProc(string keyword = "%mary%")
+        {
+            var data=db.usp_GetClientContribution(keyword);
             return View(data);
         }
     }
