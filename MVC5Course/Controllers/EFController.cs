@@ -44,5 +44,25 @@ namespace MVC5Course.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Update(int id)
+        {
+            var product = db.Product.Find(id);
+            product.ProductName = product.ProductName + "!";
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Add5Percernt()
+        {
+            var data = db.Product.Where(p => p.ProductName.Contains("White"));
+            foreach(var temp in data)
+            {
+                if(temp.Price.HasValue)
+                {
+                    temp.Price = temp.Price * 1.05m;
+                }
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

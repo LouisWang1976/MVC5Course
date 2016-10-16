@@ -8,11 +8,13 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("加價5%", "Add5Percernt")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProductName)
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -30,6 +32,8 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
+            <br>
+            @Html.ActionLink("加入驚嘆號", "Update", new { id = item.ProductId })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
