@@ -10,10 +10,11 @@ namespace MVC5Course.Controllers
 {
     public class MBController : BaseController
     {
+        [ShareTempData]
         // GET: MB
         public ActionResult Index()
         {
-            ViewData["Temp1"] = "暫存1";
+            
             var B = new ClientLoginViewModel() {
                 FirstName = "Wang",
                 LastName="Louis"

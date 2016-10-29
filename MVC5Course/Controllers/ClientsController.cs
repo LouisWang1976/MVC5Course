@@ -13,7 +13,7 @@ namespace MVC5Course.Controllers
 {
     public class ClientsController : BaseController
     {
-        
+        [LocalOnly]
         // GET: Clients
         public ActionResult Index(string search)
         {
