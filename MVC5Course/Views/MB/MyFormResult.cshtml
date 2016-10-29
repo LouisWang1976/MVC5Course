@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "MyFormResult";
+}
+
+<h2>MyFormResult</h2>
+@using MVC5Course.Models.ViewModels
+@{
+    var c = ViewData["MyFormData"] as ClientLoginViewModel;
+    if (c != null)
+    {
+        <h3>@c.FirstName 新增資料成功! </h3>
+    }
+}
+
+
