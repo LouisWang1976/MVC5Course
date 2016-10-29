@@ -19,7 +19,7 @@ namespace MVC5Course.Models
                 yield return new ValidationResult("產品名稱有誤",
                     new string[] { "ProductName" });
             }
-            throw new NotImplementedException();
+            yield break;
         }
     }
 
