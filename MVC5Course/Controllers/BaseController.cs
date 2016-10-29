@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected FabricsEntities db = new FabricsEntities();
         protected override void HandleUnknownAction(string actionName)
