@@ -10,12 +10,11 @@ using MVC5Course.Models;
 
 namespace MVC5Course.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
         //private FabricsEntities db = new FabricsEntities();
         ProductRepository repo =  RepositoryHelper.GetProductRepository();
         // GET: Products
-        [Route("prod/list")]
         public ActionResult Index()
         {
             var data = repo.GetAllDataOrderByProduct(10).ToList();
