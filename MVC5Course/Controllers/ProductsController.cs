@@ -15,6 +15,7 @@ namespace MVC5Course.Controllers
         //private FabricsEntities db = new FabricsEntities();
         ProductRepository repo =  RepositoryHelper.GetProductRepository();
         // GET: Products
+        [Route("prod/list")]
         public ActionResult Index()
         {
             var data = repo.GetAllDataOrderByProduct(10).ToList();
