@@ -32,7 +32,7 @@ namespace MVC5Course.Controllers
             }
             IQclient =IQclient.OrderByDescending(p =>p.ClientId).Take(10);
 
-            var options = (from s1 in db.Client select s1.CreditRating).Distinct().ToList();
+            var options = (from s1 in db.Client orderby s1.CreditRating  select s1.CreditRating).Distinct();
             ViewBag.DPCreditRating =new SelectList( options);
 
             ViewBag.DPGender = new SelectList(new string[]{ "M","F"});
