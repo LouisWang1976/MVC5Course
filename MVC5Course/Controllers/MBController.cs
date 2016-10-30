@@ -2,6 +2,7 @@
 using MVC5Course.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,9 @@ namespace MVC5Course.Controllers
     public class MBController : BaseController
     {
         [ShareTempData]
+        [LocalOnly]
+        [HandleError(ExceptionType =typeof(DbEntityValidationException),
+            View = "Erro_DbEntityValidationException")]
         // GET: MB
         public ActionResult Index()
         {
@@ -49,7 +53,7 @@ namespace MVC5Course.Controllers
         }
         public ActionResult BatchUpdate(ProductBatchViewModel[] items)
         {
-            if(ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 foreach (ProductBatchViewModel item in items)
                 {
@@ -62,11 +66,10 @@ namespace MVC5Course.Controllers
 
                 }
                 db.SaveChanges();
-                return RedirectToAction("ProductList");
             }
-            
-             
-            return View();
+
+       
+            return RedirectToAction("ProductList");
         }
         public ActionResult MyErro()
         {

@@ -9,4 +9,26 @@
 <pre>@Model.ControllerName </pre>
 <pre>@Model.ActionName </pre>
 <pre>@Model.Exception.ToString() </pre>
+@using System.Data.Entity.Validation
+@{ 
+    var ex = Model.Exception as DbEntityValidationException;
+}
+<h3>驗證錯誤如下</h3>
+<table>
+    <tr>
+        <th>屬性名稱</th>
+        <th>錯誤訊息</th>
+    </tr>
+    @foreach (var eve in ex.EntityValidationErrors)
+    {
+        foreach (var err in eve.ValidationErrors)
+        {
+            <tr>
+                <td>@err.PropertyName</td>
+                <td>@err.ErrorMessage</td>
+            </tr>
+        }
+    }
+
+</table>
 
