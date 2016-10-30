@@ -14,15 +14,28 @@ namespace MVC5Course.Controllers
     public class ClientsController : BaseController
     {
         // GET: Clients
-        public ActionResult Index(string search)
+        public ActionResult Index(string search,int? DPCreditRating, string DPGender)
         {
 
             var IQclient = db.Client.Include(c=>c.Occupation);
-            if(string.IsNullOrEmpty(search))
+            if(!string.IsNullOrEmpty(search))
             {
                 IQclient=IQclient.Where(p => p.FirstName.Contains(search));
             }
-            IQclient=IQclient.OrderByDescending(p =>p.ClientId).Take(10);
+            if (DPCreditRating.HasValue)
+            {
+                IQclient = IQclient.Where(p => p.CreditRating==DPCreditRating);
+            }
+            if (!string.IsNullOrEmpty(DPGender))
+            {
+                IQclient = IQclient.Where(p => p.Gender.Contains(DPGender));
+            }
+            IQclient =IQclient.OrderByDescending(p =>p.ClientId).Take(10);
+
+            var options = (from s1 in db.Client select s1.CreditRating).Distinct().ToList();
+            ViewBag.DPCreditRating =new SelectList( options);
+
+            ViewBag.DPGender = new SelectList(new string[]{ "M","F"});
             return View(IQclient.ToList());
         }
         public ActionResult Login()
