@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout="";
+    int[] data = new int[] { 1, 2, 3, 4, 5 };
+}
+
+@foreach(var l_int in data)
+{
+    @l_int;
+}
+<br/>
+@foreach (var l_int in data)
+{
+     @(l_int+" ")
+}
+<br />
+<ul>
+    @foreach (int l_int in data)
+    { 
+        <li>@l_int</li>
+    }
+</ul>
+
+
