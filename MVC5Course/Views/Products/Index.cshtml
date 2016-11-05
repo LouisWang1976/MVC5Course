@@ -9,6 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using PagedList
+@using PagedList.Mvc
+@Html.PagedListPager(Model as IPagedList,(p)=>Url.Action("Index",new { PageNo= p } ))
 <table class="table">
     <tr>
         <th>

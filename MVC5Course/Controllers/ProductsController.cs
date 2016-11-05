@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using PagedList;
 
 namespace MVC5Course.Controllers
 {
@@ -16,10 +17,10 @@ namespace MVC5Course.Controllers
         ProductRepository repo =  RepositoryHelper.GetProductRepository();
         // GET: Products
 
-        public ActionResult Index()
+        public ActionResult Index(int PageNo=1)
         {
-            var data = repo.GetAllDataOrderByProduct(10).ToList();
-            return View(data);
+            var data = repo.All().OrderBy(p=>p.ProductId).AsQueryable();
+            return View(data.ToPagedList(PageNo,10));
         }
 
         // GET: Products/Details/5
