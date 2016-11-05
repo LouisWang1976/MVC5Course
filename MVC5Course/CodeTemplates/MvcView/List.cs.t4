@@ -21,7 +21,8 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 }
-
+@using PagedList
+@using PagedList.Mvc
 <h2><#= ViewName#></h2>
 
 <#
@@ -47,6 +48,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@Html.PagedListPager(Model as IPagedList, (p) => Url.Action("Index", new { PageNo = p }))
 <table class="table">
     <tr>
 <#
@@ -114,6 +116,7 @@ if (pkName != null) {
 }
 
 </table>
+@Html.PagedListPager(Model as IPagedList, (p) => Url.Action("Index", new { PageNo = p }))
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>
