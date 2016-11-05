@@ -13,6 +13,7 @@ namespace MVC5Course.Controllers
 {
     public class ClientsController : BaseController
     {
+        [Authorize]
         // GET: Clients
         public ActionResult Index(string search,int? DPCreditRating, string DPGender)
         {
