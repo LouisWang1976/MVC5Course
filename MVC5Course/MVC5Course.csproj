@@ -192,6 +192,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\Products1Controller.cs" />
     <Compile Include="Controllers\ProductsApiController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="ActionFilter\ShareTempDataAttribute.cs" />
@@ -443,11 +444,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CodeTemplates\ApiControllerEmpty\" />
+    <Folder Include="CodeTemplates\ApiControllerWithActions\" />
+    <Folder Include="CodeTemplates\ApiControllerWithContext\" />
+    <Folder Include="CodeTemplates\ApiDependencyCodeGenerator\" />
+    <Folder Include="CodeTemplates\MvcArea\" />
+    <Folder Include="CodeTemplates\MvcControllerEmpty\" />
+    <Folder Include="CodeTemplates\MvcControllerWithActions\" />
+    <Folder Include="CodeTemplates\MvcControllerWithContext\" />
+    <Folder Include="CodeTemplates\MvcFullDependencyCodeGenerator\" />
+    <Folder Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\" />
+    <Folder Include="CodeTemplates\MvcViewWithoutModel\" />
+    <Folder Include="CodeTemplates\MvcView\" />
+    <Folder Include="CodeTemplates\ODataControllerWithActions\" />
+    <Folder Include="CodeTemplates\ODataControllerWithContext\" />
     <Folder Include="css\" />
     <Folder Include="font\" />
     <Folder Include="img\" />
     <Folder Include="js\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Products1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
