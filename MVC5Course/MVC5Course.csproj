@@ -441,6 +441,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Client.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CreditRating.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Products1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -463,7 +464,6 @@
     <Folder Include="img\" />
     <Folder Include="js\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Products1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

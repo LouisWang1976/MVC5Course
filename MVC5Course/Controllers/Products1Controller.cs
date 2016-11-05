@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
-
+using PagedList;
 namespace MVC5Course.Controllers
 {
     public class Products1Controller : Controller
     {
         private FabricsEntities db = new FabricsEntities();
-
+        ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products1
-        public ActionResult Index()
+        public ActionResult Index(int PageNo = 1)
         {
-            return View(db.Product.ToList());
+            var data = repo.All().OrderBy(p => p.ProductId).AsQueryable();
+            return View(data.ToPagedList(PageNo, 10));
         }
 
         // GET: Products1/Details/5
